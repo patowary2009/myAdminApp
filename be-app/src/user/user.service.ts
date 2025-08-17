@@ -16,6 +16,8 @@ export class UserService {
   }
 
   async findAll(): Promise<User[]> {
-    return this.userRepository.find(); // Retrieve all users
+    return (await this.userRepository.find()).toSorted(
+      (a: User, b: User) => b.id - a.id,
+    ); // Retrieve all users
   }
 }
