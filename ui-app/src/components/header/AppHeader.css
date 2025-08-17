@@ -1,0 +1,19 @@
+header{
+  background-color: #282c34;
+  padding: 8px 40px;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+}
+.product-name-wrapper {
+  width: 40%;
+  text-align: left;
+  font-size: 16px;
+  font-weight: bold;
+}
+.user-info-wrapper {
+  width: 60%;
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
+}
