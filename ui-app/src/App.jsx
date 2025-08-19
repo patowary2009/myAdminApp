@@ -31,7 +31,7 @@ function App() {
               }
             />
             <Route
-              path="user/:id/:mode"
+              path="user/:id/"
               element={
                 <ProtectedRoute roles={["Admin"]}>
                   <ViewEditUser />

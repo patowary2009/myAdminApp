@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import { DataGrid } from "@mui/x-data-grid";
 import { Button, Stack, Paper } from "@mui/material";
 import AddUser from "./add-user/AddUser";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, createSearchParams } from "react-router-dom";
 import {API_BASE_URL} from "../../config/api.config";
 
 const columns = [
@@ -62,11 +62,11 @@ const columns = [
 const paginationModel = { page: 0, pageSize: 5 };
 
 const onViewClick = (row) => {
-  navigate(`/user/${row.id}/view`);
+  navigate({ pathname: `/user/${row.id}`, search: `?${createSearchParams({ mode: "view" })}` });
 };
 
 const onEditClick = (row) => {
-  navigate(`/user/${row.id}/edit`);
+  navigate({ pathname: `/user/${row.id}`, search: `?${createSearchParams({ mode: "edit" })}` });
 };
 
 let navigate = null;

@@ -1,10 +1,10 @@
-// AuthContext.js
 import { createContext, useContext, useState, useEffect } from "react";
 
 const AuthContext = createContext();
 
 export function AuthProvider({ children }) {
   const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(true); // <--- new state
 
   // Restore user on page load
   useEffect(() => {
@@ -12,11 +12,12 @@ export function AuthProvider({ children }) {
     if (storedUser) {
       setUser(JSON.parse(storedUser));
     }
+    setLoading(false); // finished restoring
   }, []);
 
   const login = (userData) => {
     setUser(userData);
-    localStorage.setItem("user", JSON.stringify(userData)); // persist
+    localStorage.setItem("user", JSON.stringify(userData));
   };
 
   const logout = () => {
@@ -25,7 +26,7 @@ export function AuthProvider({ children }) {
   };
 
   return (
-    <AuthContext.Provider value={{ user, login, logout }}>
+    <AuthContext.Provider value={{ user, login, logout, loading }}>
       {children}
     </AuthContext.Provider>
   );
